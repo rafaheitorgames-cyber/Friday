@@ -1,0 +1,9 @@
+{
+  "name": "friday-chatbot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "F.R.I.D.A.Y. chatbot with secure server-side Azure API configuration",
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}

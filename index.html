@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F.R.I.D.A.Y. — Interface</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">F.R.I.D.A.Y.</div>
+      <div class="top-actions">
+        <button class="theme-btn color-swap-btn" id="colorSwapBtn" title="Trocar azul e vermelho" aria-label="Trocar azul e vermelho"></button>
+      </div>
+    </header>
+
+    <main>
+      <!-- TELA INICIAL -->
+      <section class="home-screen" id="homeScreen">
+        <aside class="sidebar">
+          <h2>F.R.I.D.A.Y.</h2>
+          <span class="mode">STANDBY MODE</span>
+          <nav>
+            <button data-target="dashboard">▦ <span>Dashboard</span></button>
+            <button id="openChat">▣ <span>Chat</span></button>
+            <button id="openAudio" type="button">◫ <span>Audio</span></button>
+          </nav>
+        </aside>
+
+        <section class="hero">
+          <div class="reactor">
+            <div class="orbit orbit-1"></div>
+            <div class="orbit orbit-2"></div>
+            <div class="orbit orbit-3"></div>
+            <div class="orbit orbit-4"></div>
+            <div class="core"><div class="core-glow"></div></div>
+          </div>
+
+          <h1>AWAITING COMMAND</h1>
+          <p>CORE SYSTEMS INITIALIZED · NEURAL NET STANDBY</p>
+
+          <div class="command-box">
+            <span>⌕</span>
+            <input id="homeInput" type="text" placeholder="TYPE A COMMAND OR ASK A QUESTION...">
+            <button id="homeMic" title="Entrada por voz">♩</button>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- TELA DE CHAT -->
+      <section class="chat-screen hidden" id="chatScreen">
+        <button class="chat-back-dashboard" id="chatBackDashboard" type="button">← DASHBOARD</button>
+        <button class="friday-api-screen-button chat-api-button" id="chatApiConfigButton" type="button">⚙ CADASTRAR API</button>
+        <div class="chat-layout">
+          <aside class="history">
+            <div class="history-head"><div class="history-title">↻ &nbsp; HISTÓRICO</div><button id="newChatBtn" class="new-chat-btn" type="button" title="Voltar e iniciar um novo chat">＋</button></div>
+            <button>⌕ <span>Status do reator</span></button>
+            <button>⌕ <span>Previsão do tempo</span></button>
+            <button>⌕ <span>Protocolo de segurança</span></button>
+          </aside>
+
+          <section class="chat-area">
+            <div class="messages" id="messages">
+              <article class="message bot">
+                <div class="avatar">▣</div>
+                <div class="bubble">
+                  <strong>Initializing secure connection...</strong>
+                  <p>Hello. How can I assist you today?</p>
+                </div>
+              </article>
+            </div>
+
+            <form class="chat-input" id="chatForm">
+              <input id="chatInput" autocomplete="off" placeholder="Digite uma mensagem...">
+              <button type="button" id="micBtn" title="Entrada por voz">♩</button>
+              <button class="send" type="submit" title="Enviar">➤</button>
+            </form>
+          </section>
+        </div>
+
+      </section>
+      <!-- TELA DE ÁUDIO / CONVERSA POR VOZ -->
+      <section class="audio-screen hidden" id="audioScreen">
+        <div class="audio-layout">
+          <button class="audio-back" id="audioBack" type="button">← DASHBOARD</button>
+          <button class="friday-api-screen-button audio-api-button" id="audioApiConfigButton" type="button">⚙ CADASTRAR API</button>
+
+          <div class="audio-header">
+            <span class="audio-status-dot" id="audioStatusDot"></span>
+            <span id="audioStatus">VOICE MODE · STANDBY</span>
+          </div>
+
+          <div class="audio-core" id="audioCore">
+            <div class="audio-ring ring-a"></div>
+            <div class="audio-ring ring-b"></div>
+            <div class="audio-ring ring-c"></div>
+            <div class="audio-mic">♩</div>
+          </div>
+
+          <h1>F.R.I.D.A.Y. VOICE MODE</h1>
+          <p class="audio-subtitle" id="audioSubtitle">
+            Pressione o microfone para iniciar a conversa por voz
+          </p>
+
+          <div class="voice-transcript" id="voiceTranscript">
+            <span class="transcript-label">LIVE TRANSCRIPT</span>
+            <p id="voiceText">Aguardando comando de voz...</p>
+          </div>
+
+          <button class="voice-main-btn" id="voiceMainBtn" type="button">
+            <span>♩</span> INICIAR CONVERSA
+          </button>
+
+          <p class="audio-hint">
+            Use Chrome ou Edge e permita o acesso ao microfone quando solicitado.
+          </p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- CONFIGURAÇÃO DA API — usada somente pelo Chat e Áudio -->
+  <div id="fridayApiModal" class="friday-api-modal" aria-hidden="true">
+    <div class="friday-api-box" role="dialog" aria-modal="true" aria-labelledby="fridayApiTitle">
+      <button id="fridayApiClose" class="friday-api-close" type="button" aria-label="Fechar">×</button>
+      <h2 id="fridayApiTitle">CONFIGURAÇÃO DA API</h2>
+      <p>Cadastre as informações que serão usadas pela F.R.I.D.A.Y. no Chat e no Áudio.</p>
+
+      <label for="fridayApiKey">API Key</label>
+      <input id="fridayApiKey" type="password" autocomplete="off" placeholder="Digite sua API Key">
+
+      <label for="fridayApiEndpoint">Endpoint</label>
+      <input id="fridayApiEndpoint" type="text" autocomplete="off" placeholder="https://...">
+
+      <label for="fridayApiModel">Deployment / Model</label>
+      <input id="fridayApiModel" type="text" autocomplete="off" placeholder="Nome do deployment ou modelo">
+
+      <div class="friday-api-actions">
+        <button id="fridayApiCancel" type="button">Cancelar</button>
+        <button id="fridayApiSave" type="button">Salvar</button>
+      </div>
+      <div id="fridayApiStatus" role="status" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
